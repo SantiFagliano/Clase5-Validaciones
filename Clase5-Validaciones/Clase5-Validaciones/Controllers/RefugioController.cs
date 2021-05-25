@@ -1,13 +1,10 @@
 ﻿using Clase5_Validaciones.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Clase5_Validaciones.Controllers
 {
@@ -21,18 +18,18 @@ namespace Clase5_Validaciones.Controllers
             if (Especies.Count == 0)
             {
                 Especies = new List<Especie>() {
-                                new Especie() { Id = 1, Nombre = "Perro" }, 
+                                new Especie() { Id = 1, Nombre = "Perro" },
                                 new Especie() { Id = 2, Nombre = "Gato" },
                                 new Especie() { Id = 3, Nombre = "Tortuga" },
                                 new Especie() { Id = 4, Nombre = "Pez" },
                                 new Especie() { Id = 5, Nombre = "Hamster" }
-                }.OrderBy(o=> o.Nombre)
+                }.OrderBy(o => o.Nombre)
                 .ToList();
             }
 
             if (Colores.Count == 0)
             {
-                Colores = ObtenerColores().OrderBy(o=> o.Name).ToList();
+                Colores = ObtenerColores().OrderBy(o => o.Name).ToList();
             }
         }
         public IActionResult AgregarMascotaEncontrada()
@@ -63,16 +60,17 @@ namespace Clase5_Validaciones.Controllers
             }
 
             if (Mascotas.Count == 0)
-            {
                 mascota.Id = 1;
-            }
             else
-            {
                 mascota.Id = Mascotas.Max(o => o.Id) + 1;
-            }
 
             Mascotas.Add(mascota);
             return View();
+        }
+        [HttpGet]
+        public IActionResult ListarMascotas()
+        {
+            return View(Mascotas);
         }
 
         private static List<Color> ObtenerColores()

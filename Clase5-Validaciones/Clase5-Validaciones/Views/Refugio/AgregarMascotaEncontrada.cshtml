@@ -2,6 +2,8 @@
 @{
     List<Clase5_Validaciones.Models.Especie> especies = (List<Clase5_Validaciones.Models.Especie>)ViewData["Especies"];
     List<System.Drawing.Color> colores = (List<System.Drawing.Color>)ViewData["Colores"];
+    ViewData["Title"] = "Agregar Mascota";
+
 }
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -14,30 +16,35 @@
     });
 </script>
 
-<partial name="/Views/Shared/_ValidationScriptsPartial.cshtml"/>
+<partial name="/Views/Shared/_ValidationScriptsPartial.cshtml" />
 <form action="/Refugio/AgregarMascotaEncontrada" method="post" enctype="multipart/form-data">
-    <div>
-        Especie:
-        <select asp-for="Especie.Id">
+    <div class="p-2">
+        <h3 class="d-inline-block border-bottom ">Bienvenido al formulario para agregar tu mascota:</h3>
+    </div>
+    <div class="mb-2">
+        <label for="Especie.Id" class="form-label">Especie:</label>
+        <select class="form-select" asp-for="Especie.Id">
             <option value="">Seleccione una especie</option>
             @foreach (var e in especies)
             {
                 <option value="@e.Id">@e.Nombre</option>
             }
         </select>
-        <span asp-validation-for="Especie.Id"></span>
+        <span class="text-danger" asp-validation-for="Especie.Id"></span>
     </div>
-    <div>
-        Estado: <textarea asp-for="Estado"></textarea>
-        <span asp-validation-for="Estado"></span>
+    <div class="mb-2">
+        <label for="Especie.id" class="form-label">Estado: </label>
+        <textarea class="form-control" asp-for="Estado"></textarea>
+        <span class="text-danger" asp-validation-for="Estado"></span>
     </div>
-    <div>
-        Peso: <input type="number" asp-for="Peso" value="" />
-        <span asp-validation-for="Peso"></span>
+    <div class="mb-2">
+        <label for="Peso" class="form-label">Peso: </label>
+        <input class="form-control" type="number" asp-for="Peso" value="" />
+        <span class="text-danger" asp-validation-for="Peso"></span>
     </div>
-    <div>
-        Color:
-        <select name="Color">
+    <div class="mb-2">
+        <label for="Color" class="form-label">Color: </label>
+        <select class="form-select" name="Color">
             <option value="0">Seleccione un color</option>
             @foreach (var e in colores)
             {
@@ -45,20 +52,28 @@
             }
         </select>
     </div>
-    <div>
-        Nombre: <input type="text" asp-for="Nombre" value="" />
-        <span asp-validation-for="Nombre"></span>
+    <div class="mb-2">
+        <label for="Nombre" class="form-label">Nombre: </label>
+        <input class="form-control" type="text" asp-for="Nombre" value="" />
+        <span class="text-danger" asp-validation-for="Nombre"></span>
     </div>
-    <div>
-        Datos de contacto: <textarea name="DatosDeContacto"></textarea>
-        <span asp-validation-for="DatosDeContacto"></span>
+    <div class="mb-2">
+        <label for="DatosDeContacto" class="form-label">Datos de Contacto: </label>
+        <textarea class="form-control" asp-for="DatosDeContacto"></textarea>
+        <span class="text-danger" asp-validation-for="DatosDeContacto"></span>
     </div>
-    <div>
-        Fotos: <input type="file" name="Foto1" value="" />
-        <input type="file" name="Foto2" value="" />
-        <input type="file" name="Foto3" value="" />
+    <div class="mb-2">
+        <label for="EmailDeContacto" class="form-label">Email de Contacto: </label>
+        <input class="form-control" asp-for="EmailDeContacto"/>
+        <span class="text-danger" asp-validation-for="EmailDeContacto"></span>
+    </div>
+    <div class="mb-2">
+        <label for="Fotos" class="form-label">Fotos: </label>
+        <input class="form-control mb-2" type="file" name="Foto1" value="" />
+        <input class="form-control mb-2" type="file" name="Foto2" value="" />
+        <input class="form-control mb-2" type="file" name="Foto3" value="" />
     </div>
 
-    <input type="submit" value="Agregar" />
+    <input type="submit" value="Agregar" class="btn btn-outline-success" />
 
 </form>
